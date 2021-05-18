@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
-const { CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN } = require("./config")     // config file have all the clients credentials
+const { USER, CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN } = require("./config")     // config file have all the clients credentials
 const OAuth2 = google.auth.OAuth2;
 
 const app = express();
@@ -26,7 +26,7 @@ async function sendMail() {
             service: "gmail",
             auth: {
                 type: "OAuth2",
-                user: "krsailesh2001@gmail.com",                        // Client.
+                user: USER,                        // Client.
                 clientId: CLIENT_ID,
                 clientSecret: CLIENT_SECRET,
                 refreshToken: REFRESH_TOKEN,
@@ -35,8 +35,8 @@ async function sendMail() {
         });
 
         const mailOptions = {                                           // Mail related information.
-            from: "krsailesh2001@gmail.com",
-            to: "krsailesh2001@gmail.com",
+            from: USER,
+            to: USER,
             subject: "Emailing through google api",
             text: "successful testing"
         };
